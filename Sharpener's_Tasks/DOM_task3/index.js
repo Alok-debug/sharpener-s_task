@@ -6,21 +6,21 @@
 // headerTitle.style.borderBottom='solid  red'
 
 //------ GET ELEMENTs BY CLASS-NAME-----(gives groups of element with same class Name)
-var items = document.getElementsByClassName('list-group-item');
-for (let i = 0; i < items.length;i++){
-    items[i].style.color = "brown";
-    items[i].style.fontWeight = "bolder";
-    items[i].style.background = "grey"
-    if (i == 1) {
-        items[i].style.background='green'
-    }
-    if (i == 2) {
-        items[i].style.background = 'red';
-        items[i].innerHTML = '<h1>Hey</h1>';
-        items[i].style.color = 'blue'
-        items[i].style.display='none'
-    }
-}
+// var items = document.getElementsByClassName('list-group-item');
+// for (let i = 0; i < items.length;i++){
+//     items[i].style.color = "brown";
+//     items[i].style.fontWeight = "bolder";
+//     items[i].style.background = "grey"
+//     if (i == 1) {
+//         items[i].style.background='green'
+//     }
+//     if (i == 2) {
+//         items[i].style.background = 'red';
+//         items[i].innerHTML = '<h1>Hey</h1>';
+//         items[i].style.color = 'blue'
+//         items[i].style.display='none'
+//     }
+// }
 
 //-------------get elements by tag Name-----
 
@@ -74,15 +74,19 @@ for (let i = 0; i < items.length;i++){
 // ------------querySelectorAll()---------------------------//
 
 
-// var titles = document.querySelectorAll('.title');
-// console.log(titles)
-// titles[0].innerHTML = '<h1>querySelectorAll</h1>';
+var titles = document.querySelectorAll('.title');
+console.log(titles)
+titles[0].innerHTML = '<h1>querySelectorAll</h1>';
 
-// var odd = document.querySelectorAll('li:nth-child(odd)');
-// var even = document.querySelectorAll('li:nth-child(even)');
+var odd = document.querySelectorAll('li:nth-child(odd)');
+var even = document.querySelectorAll('li:nth-child(even)');
 
-// for (let i = 0; i < odd.length; i++){
-//     odd[i].style.background = 'yellow';
-//     even[i].style.background = 'blue';
+for (let i = 0; i < odd.length; i++){
+    if (i == 0) {
+        even[i].style.color = 'green';
+        even[i].style.fontWeight='bolder'
+    }
+    odd[i].style.background = 'yellow';
+    even[i].style.background = 'lightgrey';
 
-// }
+}
