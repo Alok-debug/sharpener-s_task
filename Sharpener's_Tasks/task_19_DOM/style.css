@@ -1,0 +1,33 @@
+h1{
+    color: red;
+}
+
+.container{
+    width: 30%;
+    min-height: 25%;
+    margin: auto;
+    background-color: rgb(243, 235, 235);
+    
+}
+.inner2{
+    margin-bottom: 5%;
+    display: flex;
+    flex-direction: column;   
+}
+.btn{
+    background-color: red;
+}
+
+.li__container{
+    background-color: rgb(224, 174, 174);
+}
+.lis{
+    margin-bottom: 5%;
+    background-color: rgb(165, 241, 241);
+}
+#li1{
+    color: green;
+}
+#li2{
+    color: yellow;
+}
