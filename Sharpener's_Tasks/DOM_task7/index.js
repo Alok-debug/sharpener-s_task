@@ -34,29 +34,29 @@
 
 //-----creating new element ----
 
-var newDiv = document.createElement('div');
-// add class
-newDiv.className = 'new';
-// add id
-newDiv.id = 'new1';
+// var newDiv = document.createElement('div');
+// // add class
+// newDiv.className = 'new';
+// // add id
+// newDiv.id = 'new1';
 
-//add title
-newDiv.setAttribute('title', 'Hello new');
+// //add title
+// newDiv.setAttribute('title', 'Hello new');
 
-// create text Node
-var newDivText = document.createTextNode('Hello World');
+// // create text Node
+// var newDivText = document.createTextNode('Hello World');
 
-// add text to div as child
-newDiv.appendChild(newDivText);
+// // add text to div as child
+// newDiv.appendChild(newDivText);
 
-var container = document.querySelector('header .container');
-var h1 = document.querySelector('header h1');
-newDiv.style.fontSize='30px'
-container.insertBefore(newDiv, h1);
+// var container = document.querySelector('header .container');
+// var h1 = document.querySelector('header h1');
+// newDiv.style.fontSize='30px'
+// container.insertBefore(newDiv, h1);
 
-// manupulate newly created element
+// // manupulate newly created element
 
-var newly = document.querySelector('body').children[0].children[0].firstElementChild;
-newly.style.background = 'yellow';
+// var newly = document.querySelector('body').children[0].children[0].firstElementChild;
+// newly.style.background = 'yellow';
 
 
