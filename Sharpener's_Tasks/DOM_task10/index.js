@@ -8,12 +8,12 @@ function storeInput(e) {
     customerID *= random;
 
     var customerData = {
-        name: `${ form.children[1].value }`,
-        mobileNo: `${ form.children[3].value }`,
-        appointmentTime: `${form.children[5].value}`
+        name: `${document.getElementById('personn').value }`,//form.children[1].value 
+        mobileNo: `${document.getElementById('contact1').value  }`,
+        appointmentTime: `${document.getElementById('dateTime').value }`
     };
 
     console.log(customerData);
     var jsonCustomer = JSON.stringify(customerData);
-    localStorage.setItem(`${customerID}`,`${jsonCustomer}`);
+    localStorage.setItem(`${customerID}`,jsonCustomer);
 }
