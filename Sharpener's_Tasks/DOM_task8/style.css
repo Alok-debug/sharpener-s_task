@@ -1,7 +1,25 @@
 .btnD{
-    margin-left: 75%;
+    position: absolute;
+    right: 15%;
+    bottom: 5%;
+   
 }
 
 .delete{
-    margin-left: 3%;
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    
 }
+.container{
+    display: flex;
+}
+
+.inputFilter{
+    width: 30%;
+    margin-left: 25vw;
+    border: solid 5px rgba(228, 29, 96, 0.623);
+}
+
+
+ 
