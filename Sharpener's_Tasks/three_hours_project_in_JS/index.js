@@ -4,14 +4,14 @@
 var form = document.getElementById('inputForm');
 form.addEventListener('submit', storeInput);
 var expenseID = 0;
-var random = Math.random();
-
+var objectArr = [];
 
 // add ul to DOM
 var ul = document.createElement('ul');
 ul.id = 'show__details';
 var mainDiv = document.getElementById('main__container');
 mainDiv.appendChild(ul);
+
 
 function storeInput(e) {
     e.preventDefault();
@@ -26,10 +26,14 @@ function storeInput(e) {
     //console.log(expenseData);
     var jsonExpense = JSON.stringify(expenseData);
     localStorage.setItem(`${expenseID}`, jsonExpense);
+    objectArr.push(expenseData);
+    
+
 
     // show ul li items who have registered 
     var li = document.createElement('li');
     li.className = 'li_items';
+    li.id = expenseID;
     var detailsText = document.createTextNode(`expenseAmt: ${document.getElementById('E_amount').value}, expenseDes: ${document.getElementById('descript').value}, Exp. Category: ${document.getElementById('exp_cat').value}`);
     li.appendChild(detailsText);
     
@@ -48,6 +52,12 @@ function storeInput(e) {
     li.appendChild(editbtn);
     li.appendChild(delbtn);
     ul.appendChild(li);
+    clearForm();
+}
+
+var clearForm = function () {
+    document.getElementById('E_amount').value = "";
+    document.getElementById('descript').value = '';
 }
 
 
@@ -61,17 +71,26 @@ function doSomething(e) {
         if (confirm('Are you Sure?')) {
             var li = e.target.parentElement;
             itemList.removeChild(li);
+            localStorage.removeItem(li.id);
         }
         
     }
     if (e.target.classList.contains('edit')) {
-        var selectedRow = e.target.parentElement;
-        var strr = selectedRow.firstChild;
+        var li = e.target.parentElement;
+        var li_ID = e.target.parentElement.id;
+        console.log(li_ID);
+        objectArr.filter((obj) => {
+            if (obj.expenseID === li_ID) {
+                document.getElementById('E_amount').value = obj.expenseAmt;
+                document.getElementById('descript').value = obj.expenseDes;
+                document.getElementById('exp_cat').value = obj.expenseCat;
+                itemList.removeChild(li);
+                localStorage.removeItem(li_ID);
+            }
+        }
+        );
         
-        console.log(strr['expenseAmt']);
-        // document.getElementById('E_amount').value = selectedRow.firstChild;
-        // document.getElementById('descript').value = selectedRow.secondChild;
-        // document.getElementById('exp_cat').value = selectedRow.lastChild;
+    
 
           
         
