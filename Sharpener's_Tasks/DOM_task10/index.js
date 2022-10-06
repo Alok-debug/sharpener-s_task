@@ -7,7 +7,7 @@ var random = Math.random();
 // add ul to DOM
 var ul = document.createElement('ul');
 ul.id = 'show__details';
-var mainDiv = document.getElementById('main__comtainer');
+var mainDiv = document.getElementById('main__container');
 mainDiv.appendChild(ul);
 
 function storeInput(e) {
