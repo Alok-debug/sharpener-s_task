@@ -3,8 +3,6 @@ const posts = [
     {title:'Post Two', body:'This is post one'}
 ];
 
-
-
 function getPosts() {
     setTimeout(() => {
         let output = '';
