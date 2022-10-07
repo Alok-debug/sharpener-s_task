@@ -6,12 +6,12 @@ function getPosts() {
     setTimeout(() => {
         let output = '';
         posts.forEach((post, index) => {
-            output += `<li>${post.title}, post created:@ ${(new Date().toLocaleTimeString())} ,Seconds Ago</li>`;
+            output += `<li>${post.title}, post created:@ ${(new Date())} ,Seconds Ago</li>`;
         });
         document.body.innerHTML = output;
     },1000);
 }
-
+getPosts();
 //-----promises to create post-----
 function createPost(post) {
     return new Promise((resolve, reject) => {
@@ -27,14 +27,17 @@ function createPost(post) {
     });
 }
 
-createPost({ title: 'Post Three', body: 'This is post three' })
-    .then(getPosts)
-    .catch(err => console.log(err));
+// createPost({ title: 'Post Three', body: 'This is post three' })
+//     .then(getPosts)
+//     .catch(err => console.log(err));
 
-createPost({ title: 'Post four', body: 'This is post four' })
-    .then(getPosts)
-    .catch(err => console.log(err));
+// createPost({ title: 'Post four', body: 'This is post four' })
+//     .then(getPosts)
+//     .catch(err => console.log(err));
     
+
+
+Promise.all([createPost({ title: 'Post Three', body: 'This is post three' }), createPost({ title: 'Post four', body: 'This is post four' })]).then(getPosts);
 //------promises to delete post
 function deletePost() {
     return new Promise((resolve, reject) => {
@@ -49,7 +52,9 @@ function deletePost() {
     });
 }
 
-deletePost().then(getPosts).catch(err => console.log(err));
+//deletePost().then(getPosts).catch(err => console.log(err));
 //deletePost().then(getPosts).catch(err => console.log(err));
 // deletePost().then(getPosts).catch(err => console.log(err));
 // deletePost().then(getPosts).catch(err => console.log(err));
+
+
