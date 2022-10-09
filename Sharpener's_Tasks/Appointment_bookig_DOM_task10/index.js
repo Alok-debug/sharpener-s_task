@@ -1,14 +1,38 @@
 var form = document.getElementById('inputf');
 form.addEventListener('submit', storeInput);
 //var customerID = 0;
+let updateDataId = [];
 
-let objectIDlist = [];
+var updatebtnn = document.getElementById('updatebtn');
+updatebtnn.addEventListener('click', updateDataToCloud);
+
+
+
 
 // add ul to DOM
 var ul = document.createElement('ul');
 ul.id = 'show__details';
 var mainDiv = document.getElementById('main__container');
 mainDiv.appendChild(ul);
+
+function updateDataToCloud(e) {
+    e.preventDefault();
+    var customerData = {
+        custId: `${document.getElementById('contact1').value}`,
+        name: `${document.getElementById('personn').value}`,//form.children[1].value 
+        mobileNo: `${document.getElementById('contact1').value}`,
+        appointmentTime: `${document.getElementById('dateTime').value}`
+    };
+
+    axios.put(`https://crudcrud.com/api/274b3f5404064448b4a7cb7b5c11bb08/appoinmentData/${updateDataId[0]}`, customerData)
+        .then(res => {
+            console.log(res);
+            //objectIDlist.push(res.data._id);
+            //showNewUserOnScreen(res.data);
+        })
+        .catch(err => console.log(err));
+    
+}
 
 function storeInput(e) {
     e.preventDefault();
@@ -26,7 +50,7 @@ function storeInput(e) {
 
 
     // // Instead of putting into local storage, Now try to put data on cloud using crud-crud, and axios
-    axios.post('https://crudcrud.com/api/fd29f6868c924144aa965685c4fcbd77/appoinmentData', customerData)
+    axios.post('https://crudcrud.com/api/274b3f5404064448b4a7cb7b5c11bb08/appoinmentData', customerData)
         .then(res => {
             //console.log(res.data._id);
             //objectIDlist.push(res.data._id);
@@ -45,7 +69,7 @@ function storeInput(e) {
         var li = document.createElement('li');
         li.id = user._id;
         
-        var detailsText = document.createTextNode(`name: ${user.name}, MobileNo: ${user.mobileNo}, ${user.appointmentTime}`);
+        var detailsText = document.createTextNode(`Name: ${user.name},  MobileNo: ${user.mobileNo}, Appointment App: ${user.appointmentTime}       `);
         li.appendChild(detailsText);
     
         // create delete and edit button
@@ -73,13 +97,28 @@ function storeInput(e) {
         //console.log(e);
         if (e.target.classList.contains('delete')) {
             var li = e.target.parentElement;
-            
             if (confirm('Are you Sure?')) {
-                axios.delete(`https://crudcrud.com/api/fd29f6868c924144aa965685c4fcbd77/appoinmentData/${li.id}`)
+                axios.delete(`https://crudcrud.com/api/274b3f5404064448b4a7cb7b5c11bb08/appoinmentData/${li.id}`)
                 .then(() => console.log('delete success'))
                 .catch(err => console.log(err));
                 itemList.removeChild(li);
             }
+        }
+        else if (e.target.classList.contains('edit')) {
+            var li = e.target.parentElement;
+            document.getElementById('updatebtn').style.display = 'block';
+            document.getElementById('submitbtn').style.display = 'none';
+            axios.get(`https://crudcrud.com/api/274b3f5404064448b4a7cb7b5c11bb08/appoinmentData/${li.id}`)
+                .then((OBJ) => {
+                    updateDataId.push(OBJ.data._id);
+                    document.getElementById('personn').value = OBJ.data.name;
+                    document.getElementById('contact1').value = OBJ.data.mobileNo;
+                    document.getElementById('dateTime').value = OBJ.data.appointmentTime;
+                    //document.getElementById('submitbtn').value = 'UPDATE DATA';
+                })
+                .catch(err => console.log(err));
+                itemList.removeChild(li);
+            
         }
     }
 
@@ -87,7 +126,7 @@ function storeInput(e) {
     // when DOM Content gets loaded;
 
     window.addEventListener('DOMContentLoaded', () => {
-        axios.get('https://crudcrud.com/api/fd29f6868c924144aa965685c4fcbd77/appoinmentData')
+        axios.get('https://crudcrud.com/api/274b3f5404064448b4a7cb7b5c11bb08/appoinmentData')
             .then(response => { return (response.data) })
             .then(data => {
                 data.forEach(obj => showNewUserOnScreen(obj))
