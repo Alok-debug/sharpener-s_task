@@ -20,8 +20,13 @@ function storeInput(e) {
         appointmentTime: `${document.getElementById('dateTime').value }`
     };
     console.log(customerData);
-    var jsonCustomer = JSON.stringify(customerData);
-    localStorage.setItem(`${customerID}`, jsonCustomer);
+    // var jsonCustomer = JSON.stringify(customerData);
+    // localStorage.setItem(`${customerID}`, jsonCustomer);
+
+// Instead of putting into local storage, Now try to put data on cloud using crud-crud, and axios 
+    axios.post('https://crudcrud.com/api/71ed7413c8ff47c6a113fb1dcb8919b7/appoinmentData', customerData)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
 
     // show ul li items who have registered 
     var li = document.createElement('li');
