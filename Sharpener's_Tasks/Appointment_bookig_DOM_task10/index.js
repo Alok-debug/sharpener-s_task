@@ -2,7 +2,6 @@ var form = document.getElementById('inputf');
 form.addEventListener('submit', storeInput);
 //var customerID = 0;
 let updateDataId = [];
-
 var updatebtnn = document.getElementById('updatebtn');
 updatebtnn.addEventListener('click', updateDataToCloud);
 
