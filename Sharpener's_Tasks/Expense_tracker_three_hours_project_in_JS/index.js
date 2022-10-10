@@ -24,10 +24,11 @@ function updateDataToCloud(e) {
     };
 
     axios.put(`https://crudcrud.com/api/f03392d40cf34f1590cef085927380a1/expenseData/${updateDataId[0]}`, expenseData)
-        .then(res => {
+        .then(() => {
             //console.log(res);
             //objectIDlist.push(res.data._id);
             showNewUserOnScreen(expenseData);
+            updateDataId.pop();
         })
         .catch(err => console.log(err));
     document.getElementById('updatebtn').style.display = 'none';
