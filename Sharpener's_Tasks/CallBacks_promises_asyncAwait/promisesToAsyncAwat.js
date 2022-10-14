@@ -28,16 +28,19 @@ const newCreatePost = async (post) => {
     
 
     let postcreation = await creatingPost;
-    console.log(`${postcreation}, posts:`,posts);
+    console.log(`${postcreation}, posts:`, posts);
     getPosts();
+
+    
 
     let postdeletion = await deletingPost;
     console.log(`${postdeletion}, post:`, posts);
     getPosts();
-
+    
     postdeletion = await deletingPost;
     console.log(`${postdeletion}, post:`, posts);
     getPosts();
+    
 
      postdeletion = await deletingPost;
     console.log(`${postdeletion}, post:`, posts);

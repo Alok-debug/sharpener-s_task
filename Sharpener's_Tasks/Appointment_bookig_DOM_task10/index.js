@@ -23,7 +23,7 @@ function updateDataToCloud(e) {
         appointmentTime: `${document.getElementById('dateTime').value}`
     };
 
-    axios.put(`https://crudcrud.com/api/274b3f5404064448b4a7cb7b5c11bb08/appoinmentData/${updateDataId[0]}`, customerData)
+    axios.put(`https://crudcrud.com/api/72973d754c534fe58eea052c240f99d3/appoinmentData/${updateDataId[0]}`, customerData)
         .then(res => {
             console.log(res);
             //objectIDlist.push(res.data._id);
@@ -49,7 +49,7 @@ function storeInput(e) {
 
 
     // // Instead of putting into local storage, Now try to put data on cloud using crud-crud, and axios
-    axios.post('https://crudcrud.com/api/274b3f5404064448b4a7cb7b5c11bb08/appoinmentData', customerData)
+    axios.post('https://crudcrud.com/api/72973d754c534fe58eea052c240f99d3/appoinmentData', customerData)
         .then(res => {
             //console.log(res.data._id);
             //objectIDlist.push(res.data._id);
@@ -97,7 +97,7 @@ function storeInput(e) {
         if (e.target.classList.contains('delete')) {
             var li = e.target.parentElement;
             if (confirm('Are you Sure?')) {
-                axios.delete(`https://crudcrud.com/api/274b3f5404064448b4a7cb7b5c11bb08/appoinmentData/${li.id}`)
+                axios.delete(`https://crudcrud.com/api/72973d754c534fe58eea052c240f99d3/appoinmentData/${li.id}`)
                 .then(() => console.log('delete success'))
                 .catch(err => console.log(err));
                 itemList.removeChild(li);
@@ -107,7 +107,7 @@ function storeInput(e) {
             var li = e.target.parentElement;
             document.getElementById('updatebtn').style.display = 'block';
             document.getElementById('submitbtn').style.display = 'none';
-            axios.get(`https://crudcrud.com/api/274b3f5404064448b4a7cb7b5c11bb08/appoinmentData/${li.id}`)
+            axios.get(`https://crudcrud.com/api/72973d754c534fe58eea052c240f99d3/appoinmentData/${li.id}`)
                 .then((OBJ) => {
                     updateDataId.push(OBJ.data._id);
                     document.getElementById('personn').value = OBJ.data.name;
@@ -125,7 +125,7 @@ function storeInput(e) {
     // when DOM Content gets loaded;
 
     window.addEventListener('DOMContentLoaded', () => {
-        axios.get('https://crudcrud.com/api/274b3f5404064448b4a7cb7b5c11bb08/appoinmentData')
+        axios.get('https://crudcrud.com/api/72973d754c534fe58eea052c240f99d3/appoinmentData')
             .then(response => { return (response.data) })
             .then(data => {
                 data.forEach(obj => showNewUserOnScreen(obj))

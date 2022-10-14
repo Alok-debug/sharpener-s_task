@@ -23,12 +23,12 @@ function updateDataToCloud(e) {
         expenseCat: `${document.getElementById('exp_cat').value}`
     };
 
-    axios.put(`https://crudcrud.com/api/f03392d40cf34f1590cef085927380a1/expenseData/${updateDataId[0]}`, expenseData)
+    axios.put(`https://crudcrud.com/api/53d58481ebd74ca9ae374c51bfb4a2b5/expenseData/${updateDataId[0]}`, expenseData)
         .then(() => {
             //console.log(res);
             //objectIDlist.push(res.data._id);
-            showNewUserOnScreen(expenseData);
-            updateDataId.pop();
+            //showNewUserOnScreen(expenseData);
+            updateDataId.pop(); 
         })
         .catch(err => console.log(err));
     document.getElementById('updatebtn').style.display = 'none';
@@ -43,7 +43,7 @@ function storeInput(e) {
     e.preventDefault();
     //expenseID += 1;
     var expenseData = {
-        expenseID: `${expenseID}`,
+        // expenseID: `${expenseID}`,
         expenseAmt: `${document.getElementById('E_amount').value}`,//form.children[1].value 
         expenseDes: `${document.getElementById('descript').value}`,
         expenseCat: `${document.getElementById('exp_cat').value}`
@@ -54,7 +54,7 @@ function storeInput(e) {
     // objectArr.push(expenseData);
 
     // // Instead of putting into local storage, Now try to put data on cloud using crud-crud, and axios
-    axios.post('https://crudcrud.com/api/f03392d40cf34f1590cef085927380a1/expenseData', expenseData)
+    axios.post('https://crudcrud.com/api/53d58481ebd74ca9ae374c51bfb4a2b5/expenseData', expenseData)
         .then(res => {
             //console.log(res.data._id);
             //objectIDlist.push(res.data._id);
@@ -108,7 +108,7 @@ function doSomething(e) {
     if (e.target.classList.contains('delete')) {
         var li = e.target.parentElement;
         if (confirm('Are you Sure?')) {
-            axios.delete(`https://crudcrud.com/api/f03392d40cf34f1590cef085927380a1/expenseData/${li.id}`)
+            axios.delete(`https://crudcrud.com/api/53d58481ebd74ca9ae374c51bfb4a2b5/expenseData/${li.id}`)
             .then(() => console.log('delete success'))
             .catch(err => console.log(err));
             itemList.removeChild(li);
@@ -119,7 +119,7 @@ function doSomething(e) {
         var li = e.target.parentElement;
             document.getElementById('updatebtn').style.display = 'block';
             document.getElementById('submitbtn').style.display = 'none';
-            axios.get(`https://crudcrud.com/api/f03392d40cf34f1590cef085927380a1/expenseData/${li.id}`)
+            axios.get(`https://crudcrud.com/api/53d58481ebd74ca9ae374c51bfb4a2b5/expenseData/${li.id}`)
                 .then((OBJ) => {
                     updateDataId.push(OBJ.data._id);
                     document.getElementById('E_amount').value = OBJ.data.expenseAmt;
@@ -163,7 +163,7 @@ function doSomething(e) {
 // when DOM Content gets loaded;
 
 window.addEventListener('DOMContentLoaded', () => {
-    axios.get('https://crudcrud.com/api/f03392d40cf34f1590cef085927380a1/expenseData')
+    axios.get('https://crudcrud.com/api/53d58481ebd74ca9ae374c51bfb4a2b5/expenseData')
         .then(response => { return (response.data) })
         .then(data => {
             data.forEach(obj => showNewUserOnScreen(obj))

@@ -1,0 +1,70 @@
+.container{
+    border: solid 2px greenyellow;
+    background: rgb(75, 72, 72);
+    width: 50%;
+    margin: auto;
+    
+    color:azure
+}
+#inputForm{
+    background-color: antiquewhite;
+    color: rgb(100, 100, 225);
+}
+
+h2{
+    text-decoration: underline red;
+    margin-left: 30%;
+}
+.form__components{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+    height: 3%;
+    font-size: 1.5em;
+}
+
+.btnn{
+    margin: 2%;
+    width:10%;
+    font-weight: bolder;
+    font-size: 1.2em;
+    background-color: rgb(157, 157, 4);
+}
+
+.li_items{
+    border: solid 2px lightgreen;
+    font-size: 1.2em;
+    margin: 2%;
+    
+}
+
+#submitbtn{
+    width: 100%;
+    height: 2.5em;
+    margin-top: 5%;
+    margin-bottom: 0;
+    background-color: aqua;
+}
+
+input{
+    font-size: 1em;
+}
+
+select{
+    font-size: 1.5em;
+}
+#show__details{
+    font-size: 1em;
+    color: rgb(127, 21, 203);
+    margin-top: 10%;
+    background-color: rgb(224, 237, 233);
+}
+
+#updatebtn{
+    display: none;
+    width: 100%;
+    height: 2.5em;
+    margin-top: 5%;
+    margin-bottom: 0;
+    background-color:greenyellow;
+}
