@@ -7,8 +7,6 @@ let updateDataId = [];
 var updatebtnn = document.getElementById('updatebtn');
 updatebtnn.addEventListener('click', updateDataToCloud);
 
-
-
 async function updateDataToCloud(e) {
     e.preventDefault();
     var expenseData = {

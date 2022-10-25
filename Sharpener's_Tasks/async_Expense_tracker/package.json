@@ -1,0 +1,11 @@
+{
+  "name": "async_expense_tracker",
+  "version": "1.0.0",
+  "description": "this is full stack expense tracker app",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Alok Kumar",
+  "license": "ISC"
+}
