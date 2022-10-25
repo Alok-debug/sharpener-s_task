@@ -10,14 +10,15 @@ updatebtnn.addEventListener('click', updateDataToCloud);
 async function updateDataToCloud(e) {
     e.preventDefault();
     var expenseData = {
+        expenseCat: `${document.getElementById('exp_cat').value}`,
         expenseAmt: `${document.getElementById('E_amount').value}`,//form.children[1].value 
-        expenseDes: `${document.getElementById('descript').value}`,
-        expenseCat: `${document.getElementById('exp_cat').value}`
+        expenseDes: `${document.getElementById('descript').value}`
+        
     };
     document.getElementById('updatebtn').style.display = 'none';
     document.getElementById('submitbtn').style.display = 'block';
     try {
-        const dataPosted = await axios.put(`https://crudcrud.com/api/c4b50b20d68d46c2b323d5cc7996ec08/expenseData/${updateDataId[0]}`, expenseData);
+        const dataPosted = await axios.put(`http://localhost:5000/updateExpense/${updateDataId[0]}`, expenseData);
         //showNewUserOnScreen(expenseData);
         updateDataId.pop();
     }
@@ -29,12 +30,13 @@ async function updateDataToCloud(e) {
 async function storeInputToCloud(e) {
     e.preventDefault();
     var expenseData = {
+        expenseCat: `${document.getElementById('exp_cat').value}`,
         expenseAmt: `${document.getElementById('E_amount').value}`,
-        expenseDes: `${document.getElementById('descript').value}`,
-        expenseCat: `${document.getElementById('exp_cat').value}`
+        expenseDes: `${document.getElementById('descript').value}`
+        
     };
     try {
-        const response = await axios.post('https://crudcrud.com/api/c4b50b20d68d46c2b323d5cc7996ec08/expenseData', expenseData)
+        const response = await axios.post('http://localhost:5000/addExpense', expenseData)
         showNewUserOnScreen(response.data);
     } catch (err) {
         console.log(err)
@@ -85,7 +87,7 @@ function doSomething(e) {
         if (confirm('Are you Sure?')) {
             const deleteRow = async () => {
                 try {
-                    let response = await axios.delete(`https://crudcrud.com/api/c4b50b20d68d46c2b323d5cc7996ec08/expenseData/${li.id}`);
+                    let response = await axios.delete(`http://localhost:5000/deleteExpense/${li.id}`);
                     console.log('delete success');
                     itemList.removeChild(li);
                 } catch (err) {
@@ -103,11 +105,11 @@ function doSomething(e) {
         document.getElementById('submitbtn').style.display = 'none';
         const editdetails = async () => {
             try {
-                let dataObj = await axios.get(`https://crudcrud.com/api/c4b50b20d68d46c2b323d5cc7996ec08/expenseData/${li.id}`);
+                let dataObj = await axios.get(`http://localhost:5000/getExpense/${li.id}`);
                 updateDataId.push(dataObj.data._id);
+                document.getElementById('exp_cat').value = dataObj.data.expenseCat;
                 document.getElementById('E_amount').value = dataObj.data.expenseAmt;
                 document.getElementById('descript').value = dataObj.data.expenseDes;
-                document.getElementById('exp_cat').value = dataObj.data.expenseCat;
                 itemList.removeChild(li);
             } catch (err) {
                 console.log(err);
@@ -120,7 +122,7 @@ function doSomething(e) {
 // when DOM Content gets loaded;
 async function loadWindow () {
     try {
-        const responseFromCloud = await axios.get('https://crudcrud.com/api/c4b50b20d68d46c2b323d5cc7996ec08/expenseData');
+        const responseFromCloud = await axios.get('http://localhost:5000/getExpenses');
         const data = responseFromCloud.data;
         data.forEach(obj =>showNewUserOnScreen(obj));
     }
