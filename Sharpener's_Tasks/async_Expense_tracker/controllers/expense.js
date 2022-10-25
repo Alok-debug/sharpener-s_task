@@ -27,26 +27,50 @@ exports.addExpense=(req,res,next)=>{
     .catch(err=>{console.log(err)})
 }
 
-exports.deletExpense=(req,res,next)=>{
+exports.deleteExpense=(req,res,next)=>{
     const id=req.params.id;
     ExpenseData.findByPk(id)
-    .then((ExpData)=>{
-        ExpData.destroy()
+        .then((ExpData) => {
+            ExpData.destroy();
     })
     .catch(err=>{
         console.log(err)
     })
 }
 
-exports.editUser = (req, res, next) => {
+exports.getExpense = (req, res, next) => {
     const id=req.params.id;
-    User.findByPk(id)
-        .then((user) => {
-            ///console.log('in edit user', `${user}`);
-            console.log(user.dataValues);
+    ExpenseData.findByPk(id)
+        .then((data) => {
+            res.json(data.dataValues);
     })
     .catch(err=>{
         console.log(err)
     })
     
+}
+
+exports.updateExpense = (req, res, next) => {
+    const ExpID = req.params.id;
+    console.log(ExpID);
+    const ExpenseCat = req.body.expenseCat;
+    const ExpenseAmt = req.body.expenseAmt;
+    const ExpenseDes = req.body.expenseDes;
+    ExpenseData.update(
+    {
+        ExpenseCat:ExpenseCat,
+        ExpenseAmt: ExpenseAmt,
+        ExpenseDes:ExpenseDes
+    },
+    {
+        where:
+        {
+            id:ExpID
+        }
+    })
+        .then((result) => {
+            console.log(result.dataValues);
+        res.json(result.dataValues)
+    })
+    .catch(err=>{console.log(err)})
 }

@@ -18,7 +18,7 @@ app.use(axios);
 
 const PORT = process.env.PORT || 5000;
 sequelize.sync()
-.then(app.listen(PORT))
+.then(app.listen(PORT,()=>{console.log(`server is runing at port no: ${PORT}`)}))
 .catch(err=>{
     console.log(err)
 })

@@ -50,11 +50,11 @@ var mainDiv = document.getElementById('main__container');
 mainDiv.appendChild(ul);
 
 
-function showNewUserOnScreen(user){
+function showNewUserOnScreen(dataObj){
     var li = document.createElement('li');
     li.className = 'li_items';
-    li.id = user._id;
-    var detailsText = document.createTextNode(`ExpenseAmt: ${user.expenseAmt}, Expense-Des: ${user.expenseDes}, Exp. Category: ${user.expenseCat}`);
+    li.id = dataObj.id;
+    var detailsText = document.createTextNode(`ExpenseAmt: ${dataObj.ExpenseAmt}, Expense-Des: ${dataObj.ExpenseDes}, Exp. Category: ${dataObj.ExpenseCat}`);
     li.appendChild(detailsText);
     
     // create delete and edit button
@@ -106,10 +106,10 @@ function doSomething(e) {
         const editdetails = async () => {
             try {
                 let dataObj = await axios.get(`http://localhost:5000/getExpense/${li.id}`);
-                updateDataId.push(dataObj.data._id);
-                document.getElementById('exp_cat').value = dataObj.data.expenseCat;
-                document.getElementById('E_amount').value = dataObj.data.expenseAmt;
-                document.getElementById('descript').value = dataObj.data.expenseDes;
+                updateDataId.push(dataObj.data.id);
+                document.getElementById('exp_cat').value = dataObj.data.ExpenseCat;
+                document.getElementById('E_amount').value = dataObj.data.ExpenseAmt;
+                document.getElementById('descript').value = dataObj.data.ExpenseDes;
                 itemList.removeChild(li);
             } catch (err) {
                 console.log(err);
@@ -123,6 +123,7 @@ function doSomething(e) {
 async function loadWindow () {
     try {
         const responseFromCloud = await axios.get('http://localhost:5000/getExpenses');
+        //console.log(responseFromCloud.data);
         const data = responseFromCloud.data;
         data.forEach(obj =>showNewUserOnScreen(obj));
     }
